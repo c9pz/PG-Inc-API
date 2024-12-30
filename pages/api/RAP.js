@@ -3,6 +3,10 @@ import fetch from 'node-fetch';
 export default async function handler(req, res) {
     const { userId } = req.query;
 
+    if (!userId) {
+        return res.status(400).json({ error: 'Missing userId' });
+    }
+
     try {
         let totalRAP = 0;
         let cursor = '';
@@ -13,8 +17,8 @@ export default async function handler(req, res) {
             const data = await response.json();
 
             if (response.status !== 200) {
-                res.status(500).json({ error: 'Error' });
-                return;
+                console.error('Error fetching data:', data);
+                return res.status(500).json({ error: 'Error' });
             }
 
             if (!data.data || data.data.length === 0) break;
@@ -30,6 +34,7 @@ export default async function handler(req, res) {
         res.status(200).json({ playerRAP: formattedRAP });
 
     } catch (error) {
+        console.error('Error:', error);
         res.status(500).json({ error: 'Error' });
     }
 }
