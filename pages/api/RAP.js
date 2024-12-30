@@ -8,35 +8,21 @@ export default async function handler(req, res) {
     }
 
     try {
-        let totalRAP = 0;
-        let cursor = '';
-        const limit = 100;
+        const friendsResponse = await fetch(`https://friends.roblox.com/v1/users/${userId}/friends`);
+        const groupsResponse = await fetch(`https://groups.roblox.com/v1/users/${userId}/groups/roles`);
 
-        while (true) {
-            const response = await fetch(`https://inventory.roblox.com/v1/users/${userId}/assets/collectibles?limit=${limit}&cursor=${cursor}`);
-            const data = await response.json();
+        const friendsData = await friendsResponse.json();
+        const groupsData = await groupsResponse.json();
 
-            if (response.status !== 200) {
-                console.error('Error fetching data:', data);
-                return res.status(500).json({ error: 'Error' });
-            }
-
-            if (!data.data || data.data.length === 0) break;
-
-            totalRAP += data.data.reduce((acc, item) => acc + (item.recentAveragePrice || 0), 0);
-
-            if (!data.nextPageCursor) break;
-
-            cursor = data.nextPageCursor;
+        if (friendsResponse.status !== 200 || groupsResponse.status !== 200) {
+            res.status(500).json({ error: 'Error' });
+            return;
         }
 
-        const formattedRAP = totalRAP.toLocaleString();
+        const friendsCount = friendsData.data.length;
+        const groupsCount = groupsData.data.length;
 
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-        res.status(200).json({ playerRAP: formattedRAP });
+        res.status(200).json({ friendsCount, groupsCount });
 
     } catch (error) {
         console.error('Error:', error);
