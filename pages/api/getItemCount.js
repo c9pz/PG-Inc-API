@@ -1,32 +1,27 @@
+// pages/api/getItemCount.js
+
 export default async function handler(req, res) {
-  if (req.method === 'GET') {
-    const { userId } = req.query;
+  const { userId } = req.query;
 
-    if (!userId) {
-      return res.status(400).json({ message: 'User ID is required.' });
+  if (!userId) {
+    return res.status(400).json({ error: 'UserId is required' });
+  }
+
+  try {
+    // Example logic to fetch user item count (you need to replace this with actual API calls)
+    const response = await fetch(`https://some-roblox-api.com/user/${userId}/inventory`);
+    const data = await response.json();
+
+    if (!data || data.error) {
+      return res.status(404).json({ error: 'User not found or invalid response' });
     }
 
-    try {
-      const response = await fetch(`https://api.roblox.com/v1/users/${userId}/assets/collectibles`);
-      
-      if (!response.ok) {
-        return res.status(response.status).json({ message: 'Failed to fetch inventory data.' });
-      }
+    // Assuming the API returns an item count field
+    const itemCount = data.itemCount;
 
-      const data = await response.json();
-
-      if (data && data.data) {
-        return res.status(200).json({
-          userId: userId,
-          itemCount: data.data.length, 
-        });
-      } else {
-        return res.status(404).json({ message: 'No items found for this user.' });
-      }
-    } catch (error) {
-      return res.status(500).json({ message: 'Internal server error.' });
-    }
-  } else {
-    res.status(405).json({ message: 'Method Not Allowed' });
+    res.status(200).json({ itemCount });
+  } catch (error) {
+    console.error('Error fetching item count:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 }
