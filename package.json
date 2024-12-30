@@ -14,12 +14,3 @@
     "react-dom": "^18.0.0"
   }
 }
-  "engines": {
-    "node": "16.x"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/c9pz/pg-inc-api.git"
-  },
-  "author": "c9pz",
-  "license": "MIT"
