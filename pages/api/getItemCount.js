@@ -6,13 +6,18 @@ export default async function handler(req, res) {
   
   try {
     const response = await fetch(url)
+
+    if (!response.ok) {
+      return res.status(response.status).json({ error: 'Failed to fetch data' })
+    }
+
     const data = await response.json()
 
     if (data.errors && data.errors[0].code === 10) {
-      res.status(200).json({ itemCount: 'Private' })
-    } else {
-      res.status(200).json({ itemCount: data.data.length })
+      return res.status(200).json({ itemCount: 'Private' })
     }
+
+    res.status(200).json({ itemCount: data.data.length })
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' })
   }
