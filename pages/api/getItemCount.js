@@ -3,30 +3,28 @@ import fetch from 'node-fetch';
 export default async function handler(req, res) {
     const { userId } = req.query;
 
-    let allItems = [];
-    let page = 1;
-    const limit = 99999999;
-
     try {
-        while (true) {
-            const response = await fetch(`https://inventory.roblox.com/v1/users/${userId}/assets/collectibles?limit=${limit}&page=${page}`);
-            const data = await response.json();
+        const friendsResponse = await fetch(`https://friends.roblox.com/v1/users/${userId}/friends`);
+        const groupsResponse = await fetch(`https://groups.roblox.com/v1/users/${userId}/groups/roles`);
 
-            if (data.data.length > 0) {
-                allItems = [...allItems, ...data.data];
-            }
+        const friendsData = await friendsResponse.json();
+        const groupsData = await groupsResponse.json();
 
-            if (!data.nextPage) {
-                break;
-            }
-
-            page++;
+        if (friendsResponse.status !== 200 || groupsResponse.status !== 200) {
+            res.status(500).json({ error: 'Failed to fetch data from Roblox' });
+            return;
         }
 
-        res.status(200).json({ itemCount: allItems.length });
+        const friendsCount = friendsData.data.length;
+        const groupsCount = groupsData.data.length;
+
+        res.status(200).json({
+            friendsCount,
+            groupsCount
+        });
 
     } catch (error) {
-        console.error('Error fetching items:', error);
-        res.status(500).json({ error: 'Failed to fetch inventory items' });
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Failed to fetch data' });
     }
 }
