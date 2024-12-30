@@ -3,23 +3,18 @@ const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/api/getItemCount', async (req, res) => {
-    const userId = req.query.userId;
-
-    if (!userId) {
-        return res.status(400).json({ error: 'User ID is required' });
-    }
-
-    try {
-        const response = await axios.get(`https://api.robloxsdk.com/players/${userId}/inventory`);
-        const itemCount = response.data.items.length;
-
-        res.json({ userId, itemCount });
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch data from Roblox API' });
-    }
+app.get('/api/player/:userId/items', async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const response = await axios.get(`https://inventory.roproxy.com/v1/users/${userId}/assets/collectibles`);
+    const itemCount = response.data.length;
+    res.json({ userId, itemCount });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch player data' });
+  }
 });
 
 app.listen(port, () => {
-    console.log(`API running on port ${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
