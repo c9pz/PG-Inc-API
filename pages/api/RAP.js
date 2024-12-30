@@ -8,21 +8,26 @@ export default async function handler(req, res) {
     }
 
     try {
-        const friendsResponse = await fetch(`https://friends.roblox.com/v1/users/${userId}/friends`);
-        const groupsResponse = await fetch(`https://groups.roblox.com/v1/users/${userId}/groups/roles`);
+        const userItemsResponse = await fetch(`https://inventory.roblox.com/v1/users/${userId}/assets/collectibles`);
+        const userItemsData = await userItemsResponse.json();
 
-        const friendsData = await friendsResponse.json();
-        const groupsData = await groupsResponse.json();
-
-        if (friendsResponse.status !== 200 || groupsResponse.status !== 200) {
-            res.status(500).json({ error: 'Error' });
-            return;
+        if (userItemsResponse.status !== 200) {
+            return res.status(500).json({ error: 'Error' });
         }
 
-        const friendsCount = friendsData.data.length;
-        const groupsCount = groupsData.data.length;
+        let rap = 0;
+        for (const item of userItemsData.data) {
+            const itemDetailsResponse = await fetch(`https://catalog.roblox.com/v1/items/${item.id}/details`);
+            const itemDetailsData = await itemDetailsResponse.json();
 
-        res.status(200).json({ friendsCount, groupsCount });
+            if (itemDetailsResponse.status === 200 && itemDetailsData.price) {
+                rap += itemDetailsData.price;
+            }
+        }
+
+        const formattedRAP = rap.toLocaleString();
+
+        res.status(200).json({ playerRAP: formattedRAP });
 
     } catch (error) {
         console.error('Error:', error);
