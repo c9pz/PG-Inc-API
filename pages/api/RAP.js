@@ -19,12 +19,14 @@ export default async function handler(req, res) {
         let validItemCount = 0;
 
         for (const item of userItemsData.data) {
-            const itemDetailsResponse = await fetch(`https://catalog.roblox.com/v1/items/${item.id}/details`);
-            const itemDetailsData = await itemDetailsResponse.json();
+            if (item.isLimited || item.isLimitedUnique) {
+                const itemDetailsResponse = await fetch(`https://catalog.roblox.com/v1/items/${item.id}/details`);
+                const itemDetailsData = await itemDetailsResponse.json();
 
-            if (itemDetailsResponse.status === 200 && itemDetailsData.price) {
-                rap += itemDetailsData.price;
-                validItemCount++;
+                if (itemDetailsResponse.status === 200 && itemDetailsData.price) {
+                    rap += itemDetailsData.price;
+                    validItemCount++;
+                }
             }
         }
 
