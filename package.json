@@ -1,12 +1,13 @@
 {
   "name": "pg-inc-api",
   "version": "1.0.0",
-  "description": "the api for the bot or wtv",
-  "main": "server.js",
+  "description": "pg inc bot api",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
-{
   "dependencies": {
     "next": "^13.0.0",
     "react": "^18.0.0",
