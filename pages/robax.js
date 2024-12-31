@@ -7,13 +7,13 @@ export default function FpsBooster() {
 
   const logMessages = [
     "Initializing FPS boost...",
-    "Overclocking your graphics card...",
-    "Re-routing power from your fridge...",
-    "Disabling your antivirus for max performance...",
-    "Spinning up the fans to 9000 RPM...",
-    "Oops, your PC temperature just hit 200°C...",
-    "Injecting quantum computing algorithms...",
-    "FPS boosted by 10,000%! (Or so we think...)",
+    "Overclocking your GPU...",
+    "Diverting power to gaming modules...",
+    "Maximizing core thermal efficiency...",
+    "Loading turbo FPS algorithms...",
+    "Reaching critical optimization threshold...",
+    "Stabilizing quantum boost levels...",
+    "FPS boosted successfully! Prepare for liftoff...",
   ];
 
   const startBoost = () => {
@@ -34,18 +34,18 @@ export default function FpsBooster() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>FPS Booster 9000</h1>
+      <h1 style={styles.title}>FPS Booster Pro</h1>
       {!isBoosting && !isComplete && (
         <button style={styles.button} onClick={startBoost}>
-          Boost FPS Now
+          Start FPS Boost
         </button>
       )}
       {isBoosting && (
         <div style={styles.loadingContainer}>
           <div style={styles.clock}>
+            <div style={styles.clockCenter}></div>
             <div style={styles.clockHand}></div>
           </div>
-          <div style={styles.heat}></div>
         </div>
       )}
       <div style={styles.log}>
@@ -53,7 +53,11 @@ export default function FpsBooster() {
           <p key={index}>{log}</p>
         ))}
       </div>
-      {isComplete && <div style={styles.success}>Congratulations! Your toaster is now a space heater.</div>}
+      {isComplete && (
+        <div style={styles.success}>
+          FPS Boost Complete! Your gaming rig is now in overdrive.
+        </div>
+      )}
     </div>
   );
 }
@@ -62,80 +66,109 @@ const styles = {
   container: {
     fontFamily: "Arial, sans-serif",
     textAlign: "center",
-    backgroundColor: "#282c34",
+    backgroundColor: "#1a1a1a",
     color: "white",
-    margin: 0,
     padding: "20px",
     minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
-    marginTop: "50px",
     fontSize: "2.5rem",
+    marginBottom: "20px",
+    color: "#00d1b2",
   },
   button: {
-    marginTop: "20px",
-    padding: "15px 30px",
-    fontSize: "1.5rem",
+    padding: "15px 40px",
+    fontSize: "1.2rem",
+    backgroundColor: "#00d1b2",
     border: "none",
-    borderRadius: "10px",
-    backgroundColor: "#61dafb",
-    color: "black",
+    borderRadius: "8px",
     cursor: "pointer",
+    color: "#fff",
+    fontWeight: "bold",
   },
   loadingContainer: {
     marginTop: "50px",
     position: "relative",
     width: "200px",
     height: "200px",
-    marginLeft: "auto",
-    marginRight: "auto",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   clock: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    border: "8px solid white",
+    position: "relative",
+    width: "100px",
+    height: "100px",
+    border: "5px solid #00d1b2",
     borderRadius: "50%",
     animation: "spin 0.5s linear infinite",
+  },
+  clockCenter: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: "10px",
+    height: "10px",
+    backgroundColor: "#fff",
+    borderRadius: "50%",
+    transform: "translate(-50%, -50%)",
   },
   clockHand: {
     position: "absolute",
     top: "50%",
     left: "50%",
-    width: "2px",
-    height: "40%",
-    backgroundColor: "red",
-    transformOrigin: "bottom",
-    animation: "tick 0.1s linear infinite",
-  },
-  heat: {
-    position: "absolute",
-    bottom: "-40px",
-    left: 0,
-    width: "100%",
+    width: "4px",
     height: "40px",
-    background: "linear-gradient(0deg, rgba(255, 0, 0, 0.6), transparent)",
-    animation: "heatwave 1s infinite ease-in-out",
+    backgroundColor: "#00d1b2",
+    transformOrigin: "50% 100%",
+    animation: "tick 0.1s linear infinite",
   },
   log: {
     marginTop: "20px",
-    fontSize: "1.2rem",
-    textAlign: "left",
+    fontSize: "1rem",
     width: "80%",
     maxWidth: "600px",
-    marginLeft: "auto",
-    marginRight: "auto",
     height: "200px",
     overflowY: "auto",
     backgroundColor: "#333",
     padding: "10px",
-    borderRadius: "10px",
+    borderRadius: "8px",
+    color: "#ddd",
+    textAlign: "left",
   },
   success: {
     marginTop: "30px",
     fontSize: "1.5rem",
-    color: "lime",
+    color: "#00d1b2",
   },
 };
+
+const animations = `
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tick {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+`;
+
+if (typeof document !== "undefined") {
+  const style = document.createElement("style");
+  style.textContent = animations;
+  document.head.append(style);
+}
