@@ -14,94 +14,104 @@ const HomePage = () => {
         <style>
           {`
             body {
-                font-family: 'Source Sans Pro', sans-serif;
-                background-color: #ffffff;
-                color: #1a1a1a;
-                margin: 0;
-                padding: 0;
-                line-height: 1.6;
+              font-family: 'Source Sans Pro', sans-serif;
+              background-color: #fff;
+              color: #222;
+              margin: 0;
+              padding: 0;
+              line-height: 1.6;
             }
+
             header {
-                background-color: #f5f5f5;
-                padding: 20px;
-                text-align: center;
-                border-bottom: 1px solid #e0e0e0;
+              padding: 20px;
+              text-align: center;
+              background-color: #f9f9f9;
+              border-bottom: 1px solid #e6e6e6;
             }
+
             h1 {
-                font-size: 2.5rem;
-                margin: 0;
-                font-weight: 600;
-                color: #333333;
+              font-size: 2.25rem;
+              font-weight: 600;
+              margin: 0;
+              color: #333;
             }
+
             p.subtitle {
-                font-size: 1rem;
-                margin-top: 10px;
-                color: #666666;
+              margin-top: 10px;
+              font-size: 1rem;
+              color: #666;
             }
+
             section {
-                max-width: 800px;
-                margin: 30px auto;
-                padding: 20px;
+              max-width: 800px;
+              margin: 30px auto;
+              padding: 0 20px;
             }
+
             h2 {
-                font-size: 1.75rem;
-                font-weight: 600;
-                margin-bottom: 15px;
-                color: #333333;
+              font-size: 1.5rem;
+              font-weight: 600;
+              margin-bottom: 15px;
+              color: #333;
             }
+
             p {
-                font-size: 1rem;
-                color: #4a4a4a;
-                margin-bottom: 20px;
+              margin-bottom: 20px;
+              font-size: 1rem;
+              color: #444;
             }
+
             .api-list {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                justify-content: flex-start;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 10px;
+              justify-content: flex-start;
             }
+
             .api-link {
-                background-color: #0070f3;
-                color: #ffffff;
-                padding: 10px 15px;
-                border-radius: 4px;
-                text-decoration: none;
-                font-size: 0.875rem;
-                font-weight: 500;
-                transition: background-color 0.2s;
+              background-color: #007bff;
+              color: #fff;
+              padding: 10px 15px;
+              border-radius: 4px;
+              text-decoration: none;
+              font-size: 0.9rem;
+              font-weight: 500;
+              transition: background-color 0.2s ease;
             }
+
             .api-link:hover {
-                background-color: #0056c1;
+              background-color: #0056b3;
             }
+
             footer {
-                padding: 20px;
-                text-align: center;
-                font-size: 0.9rem;
-                background-color: #f5f5f5;
-                border-top: 1px solid #e0e0e0;
-                color: #666666;
+              text-align: center;
+              padding: 20px;
+              font-size: 0.9rem;
+              color: #666;
+              background-color: #f9f9f9;
+              border-top: 1px solid #e6e6e6;
             }
+
             ul {
-                padding-left: 20px;
+              padding-left: 20px;
             }
+
             li {
-                margin-bottom: 10px;
-                font-size: 1rem;
-                color: #4a4a4a;
+              margin-bottom: 10px;
+              font-size: 1rem;
+              color: #444;
             }
           `}
         </style>
       </head>
-
       <body>
         <header>
           <h1>PG Inc API</h1>
-          <p className="subtitle">Streamlined APIs for your Roblox projects</p>
+          <p className="subtitle">Straightforward APIs for your projects.</p>
         </header>
-
         <section>
-          <h2>Available APIs</h2>
-          <p>Browse the tools below and use them in your apps and bots:</p>
+          <h2>APIs You Can Use</h2>
+          <p>These are the endpoints available right now. Click one to test it or use it in your bot/app:</p>
           <div className="api-list">
             <a
               href="https://pg-inc-api.vercel.app/api/rarity?itemId=123456"
@@ -137,19 +147,16 @@ const HomePage = () => {
             </a>
           </div>
         </section>
-
         <section>
-          <h2>How to Use</h2>
+          <h2>How to Use Them</h2>
           <ul>
-            <li>Select an API from the list above.</li>
-            <li>Click the link to see an example with placeholder values.</li>
-            <li>Replace the parameters like <code>itemId</code> or <code>userId</code> with your data.</li>
-            <li>Copy the URL and integrate it into your application.</li>
+            <li>Pick the API you need from the list.</li>
+            <li>Replace placeholder values like <code>itemId</code> or <code>userId</code> with actual data.</li>
+            <li>Copy the link and integrate it into your app, bot, or whatever you're building.</li>
           </ul>
         </section>
-
         <footer>
-          <p>PG Inc API &copy; 2024 - Powered by Vercel</p>
+          <p>PG Inc API &copy; 2024</p>
         </footer>
       </body>
     </>
