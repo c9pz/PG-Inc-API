@@ -1,13 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 export default function FpsBooster() {
   const [logs, setLogs] = useState([]);
   const [isBoosting, setIsBoosting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const [showSpaceship, setShowSpaceship] = useState(false);
   const [screenBroken, setScreenBroken] = useState(false);
-  const canvasRef = useRef(null);
-  const spaceshipRef = useRef(null);
 
   const logMessages = [
     "Initializing FPS boost...",
@@ -33,60 +30,11 @@ export default function FpsBooster() {
         setIsBoosting(false);
         setIsComplete(true);
         setTimeout(() => {
-          setShowSpaceship(true);
-          setTimeout(() => {
-            setScreenBroken(true);
-          }, 5000);
+          setScreenBroken(true);
         }, 1000);
       }
     }, 1000);
   };
-
-  useEffect(() => {
-    if (showSpaceship && canvasRef.current) {
-      const ctx = canvasRef.current.getContext("2d");
-      const spaceship = {
-        x: 200,
-        y: 300,
-        width: 40,
-        height: 40,
-        angle: 0,
-        speed: 2,
-        draw: function () {
-          ctx.save();
-          ctx.translate(this.x, this.y);
-          ctx.rotate(this.angle);
-          ctx.beginPath();
-          ctx.moveTo(0, -this.height / 2);
-          ctx.lineTo(-this.width / 2, this.height / 2);
-          ctx.lineTo(this.width / 2, this.height / 2);
-          ctx.closePath();
-          ctx.fillStyle = "#ffcc00";
-          ctx.fill();
-          ctx.restore();
-        },
-        update: function () {
-          this.x += this.speed * Math.cos(this.angle);
-          this.y += this.speed * Math.sin(this.angle);
-          this.angle += 0.05;
-        },
-      };
-
-      spaceshipRef.current = spaceship;
-
-      const animateSpaceship = () => {
-        ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-        spaceshipRef.current.update();
-        spaceshipRef.current.draw();
-        if (spaceshipRef.current.x > window.innerWidth || spaceshipRef.current.y > window.innerHeight || spaceshipRef.current.x < 0 || spaceshipRef.current.y < 0) {
-          spaceshipRef.current.x = 200;
-          spaceshipRef.current.y = 300;
-        }
-        requestAnimationFrame(animateSpaceship);
-      };
-      animateSpaceship();
-    }
-  }, [showSpaceship]);
 
   return (
     <div style={screenBroken ? styles.screenBroken : styles.container}>
@@ -109,19 +57,14 @@ export default function FpsBooster() {
           <p key={index}>{log}</p>
         ))}
       </div>
-      {isComplete && !showSpaceship && (
+      {isComplete && !screenBroken && (
         <div style={styles.success}>
           FPS Boost Complete! Your gaming rig is now in overdrive.
         </div>
       )}
-      {showSpaceship && (
-        <div style={styles.canvasContainer}>
-          <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}></canvas>
-        </div>
-      )}
       {screenBroken && (
         <div style={styles.breakText}>
-          Oops! I think I abused the spaceship's powers.
+          Oops! I think I abused the FPS boost's powers.
         </div>
       )}
     </div>
@@ -226,14 +169,6 @@ const styles = {
     fontSize: "1.5rem",
     color: "#00d1b2",
   },
-  canvasContainer: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    height: "100%",
-  },
   breakText: {
     fontSize: "2rem",
     color: "#f00",
@@ -257,15 +192,6 @@ const animations = `
   }
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes fly {
-  0% {
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    transform: translate(200%, -200%);
   }
 }
 
