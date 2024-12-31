@@ -8,37 +8,39 @@ export default async function handler(req, res) {
     }
 
     try {
-        const response = await fetch(`https://api.roblox.com/marketplace/item/details?itemId=${itemId}`);
+        const response = await fetch(`https://api.roblox.com/marketplace/productinfo?assetId=${itemId}`);
         const data = await response.json();
 
         if (response.status !== 200 || !data) {
             return res.status(500).json({ error: 'Error fetching item details' });
         }
 
-        const itemName = data.name;
-        const rarityRank = calculateRarityRank(data);
+        const itemName = data.Name;
+        const isLimited = data.IsLimited;
+        const price = data.PriceInRobux;
+
+        let rarityRank = "Unknown";
+
+        if (isLimited) {
+            rarityRank = "Limited";
+        } else if (price >= 5000) {
+            rarityRank = "Epic";
+        } else if (price >= 1000) {
+            rarityRank = "Rare";
+        } else if (price >= 100) {
+            rarityRank = "Uncommon";
+        } else {
+            rarityRank = "Common";
+        }
 
         res.status(200).json({
             itemId,
             itemName,
-            rarityRank
+            rarityRank,
+            price
         });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Error fetching item details' });
     }
-}
-
-function calculateRarityRank(itemData) {
-    const { price, sales, limited } = itemData;
-    if (limited) {
-        if (sales < 100) {
-            return 1;
-        } else if (sales < 500) {
-            return 2;
-        } else {
-            return 3;
-        }
-    }
-    return 4;
 }
