@@ -6,7 +6,7 @@ const HomePage = () => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PG Inc API</title>
+        <title>pg inc api</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap"
           rel="stylesheet"
@@ -106,12 +106,12 @@ const HomePage = () => {
       </head>
       <body>
         <header>
-          <h1>PG Inc API</h1>
-          <p className="subtitle">Straightforward APIs for your projects.</p>
+          <h1>pg inc api</h1>
+          <p className="subtitle">super simple apis for whatever weird project you're working on</p>
         </header>
         <section>
-          <h2>APIs You Can Use</h2>
-          <p>These are the endpoints available right now. Click one to test it or use it in your bot/app:</p>
+          <h2>apis you can totally use</h2>
+          <p>here are some cool apis you can mess around with:</p>
           <div className="api-list">
             <a
               href="https://pg-inc-api.vercel.app/api/rarity?itemId=123456"
@@ -119,7 +119,7 @@ const HomePage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Item Rarity API
+              item rarity api (seriously, how rare is that item tho?)
             </a>
             <a
               href="https://pg-inc-api.vercel.app/api/removeNums?text=Hello123World456"
@@ -127,7 +127,7 @@ const HomePage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Remove Numbers API
+              remove numbers api (bye-bye, unnecessary digits)
             </a>
             <a
               href="https://pg-inc-api.vercel.app/api/friendsCount?userId=1"
@@ -135,7 +135,7 @@ const HomePage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Friends Count API
+              friends count api (how popular are you, really?)
             </a>
             <a
               href="https://pg-inc-api.vercel.app/api/groupsCount?userId=1"
@@ -143,20 +143,20 @@ const HomePage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Groups Count API
+              groups count api (are you in ALL the groups yet?)
             </a>
           </div>
         </section>
         <section>
-          <h2>How to Use Them</h2>
+          <h2>how to use them</h2>
           <ul>
-            <li>Pick the API you need from the list.</li>
-            <li>Replace placeholder values like <code>itemId</code> or <code>userId</code> with actual data.</li>
-            <li>Copy the link and integrate it into your app, bot, or whatever you're building.</li>
+            <li>pick an api</li>
+            <li>replace the placeholder stuff like <code>itemId</code> or <code>userId</code> with the actual stuff</li>
+            <li>copy the link and stick it into your project (or bot, or whatever you're building)</li>
           </ul>
         </section>
         <footer>
-          <p>PG Inc API &copy; 2024</p>
+          <p>pg inc api &copy; 2024</p>
         </footer>
       </body>
     </>
