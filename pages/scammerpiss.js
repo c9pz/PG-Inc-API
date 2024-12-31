@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import "../ConvertScammer.css"
 
 function ConvertScammer() {
   const [isConverted, setIsConverted] = useState(false)
