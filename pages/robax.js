@@ -18,82 +18,73 @@ const PcrackerPage = () => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>FREE ROBAX!!!1!!</title>
+        <title>FREE ROBUX</title>
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet" />
         <style>
           {`
             body {
               font-family: 'Source Sans Pro', sans-serif;
-              background-color: #fff;
-              color: #222;
+              background-color: #f4f4f9;
+              color: #333;
               margin: 0;
               padding: 0;
               line-height: 1.6;
             }
 
             header {
-              padding: 20px;
+              padding: 40px;
               text-align: center;
-              background-color: #f9f9f9;
-              border-bottom: 1px solid #e6e6e6;
+              background-color: #1c1c1c;
+              color: #fff;
+              border-bottom: 2px solid #222;
             }
 
             h1 {
-              font-size: 2.5rem;
-              font-weight: 600;
+              font-size: 2.8rem;
               margin: 0;
-              color: #ff5c5c;
-              text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-              animation: glowing 1.5s ease-in-out infinite alternate;
+              font-weight: 700;
             }
 
-            @keyframes glowing {
-              0% {
-                text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff5c5c;
-              }
-              100% {
-                text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff5c5c;
-              }
-            }
-
-            p {
-              font-size: 1.25rem;
-              color: #555;
-              margin: 10px;
+            .subtitle {
+              margin-top: 15px;
+              font-size: 1.2rem;
+              color: #bbb;
             }
 
             .button {
-              background-color: #ff5c5c;
+              background-color: #4CAF50;
               color: #fff;
-              padding: 10px 20px;
-              border-radius: 5px;
-              text-decoration: none;
-              font-weight: 600;
+              padding: 15px 30px;
               font-size: 1.25rem;
-              margin: 20px 0;
-              display: inline-block;
+              font-weight: 600;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              margin-top: 20px;
               transition: background-color 0.3s;
             }
 
             .button:hover {
-              background-color: #e44a4a;
+              background-color: #45a049;
             }
 
             .progress-bar-container {
-              background-color: #f2f2f2;
-              border-radius: 10px;
+              background-color: #ddd;
+              border-radius: 5px;
               width: 80%;
+              max-width: 600px;
               margin: 20px auto;
               padding: 5px;
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
             }
 
             .progress-bar {
               height: 20px;
               width: 0%;
-              background-color: #00ff00;
-              border-radius: 10px;
-              animation: fillBar 3s infinite, changeToPiss 1s infinite;
+              background-color: #4CAF50;
+              border-radius: 5px;
+              transition: width 2s ease;
+              animation: fillBar 3s infinite;
             }
 
             @keyframes fillBar {
@@ -104,13 +95,29 @@ const PcrackerPage = () => {
               100% { width: 100%; }
             }
 
+            .robux-amount {
+              font-size: 1.5rem;
+              font-weight: bold;
+              color: #333;
+              margin-top: 15px;
+            }
+
+            .robux-amount span {
+              color: #00b300;
+            }
+
+            .progress-bar.piss {
+              background-color: #ffcc00;
+              animation: fillBar 3s infinite, changeToPiss 1s infinite;
+            }
+
             @keyframes changeToPiss {
               0% {
-                background-color: #00ff00;
+                background-color: #4CAF50;
                 transform: scaleX(1);
               }
               50% {
-                background-color: #ffcc00; 
+                background-color: #ffcc00;
                 transform: scaleX(1.2);
               }
               100% {
@@ -118,39 +125,32 @@ const PcrackerPage = () => {
                 transform: scaleX(1);
               }
             }
-
-            .robux-amount {
-              font-size: 1.5rem;
-              font-weight: bold;
-              color: #ff5c5c;
-              margin-top: 15px;
-            }
           `}
         </style>
       </head>
 
       <body>
         <header>
-          <h1>FREE ROBAX!!!1!!</h1>
-          <p>congratulations! you've been selected to claim your free robux!!!</p>
+          <h1>FREE ROBUX</h1>
+          <p className="subtitle">Just click below and start claiming your FREE Robux!</p>
         </header>
 
         <main>
-          <p>we're unlocking your free robux right now... please wait a moment</p>
+          <p>We're processing your free Robux request...</p>
           <div className="progress-bar-container">
-            <div className="progress-bar"></div>
+            <div className={`progress-bar ${isLoading ? 'piss' : ''}`}></div>
           </div>
-          
+
           {isLoading && (
             <>
-              <p className="robux-amount">you've earned {robuxAmount} robux so far...</p>
-              <button className="button" onClick={() => setIsLoading(false)}>stop loading</button>
+              <p className="robux-amount">You're getting <span>{robuxAmount}</span> Robux...</p>
+              <button className="button" onClick={() => setIsLoading(false)}>Stop Loading</button>
             </>
           )}
-          
+
           {!isLoading && (
             <>
-              <button className="button" onClick={() => setIsLoading(true)}>unlock more robux!!!1!!</button>
+              <button className="button" onClick={() => setIsLoading(true)}>Get FREE Robux!</button>
             </>
           )}
         </main>
