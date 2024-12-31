@@ -4,6 +4,8 @@ export default function FpsBooster() {
   const [logs, setLogs] = useState([]);
   const [isBoosting, setIsBoosting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [showSpaceship, setShowSpaceship] = useState(false);
+  const [screenBroken, setScreenBroken] = useState(false);
 
   const logMessages = [
     "Initializing FPS boost...",
@@ -28,12 +30,18 @@ export default function FpsBooster() {
         clearInterval(interval);
         setIsBoosting(false);
         setIsComplete(true);
+        setTimeout(() => {
+          setShowSpaceship(true);
+          setTimeout(() => {
+            setScreenBroken(true);
+          }, 5000);
+        }, 1000);
       }
     }, 1000);
   };
 
   return (
-    <div style={styles.container}>
+    <div style={screenBroken ? styles.screenBroken : styles.container}>
       <h1 style={styles.title}>FPS Booster Pro</h1>
       {!isBoosting && !isComplete && (
         <button style={styles.button} onClick={startBoost}>
@@ -53,9 +61,17 @@ export default function FpsBooster() {
           <p key={index}>{log}</p>
         ))}
       </div>
-      {isComplete && (
+      {isComplete && !showSpaceship && (
         <div style={styles.success}>
           FPS Boost Complete! Your gaming rig is now in overdrive.
+        </div>
+      )}
+      {showSpaceship && (
+        <div style={styles.spaceship}></div>
+      )}
+      {screenBroken && (
+        <div style={styles.breakText}>
+          Oops! I think I abused the spaceship's powers.
         </div>
       )}
     </div>
@@ -74,6 +90,21 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
+  },
+  screenBroken: {
+    fontFamily: "Arial, sans-serif",
+    textAlign: "center",
+    backgroundColor: "#000",
+    color: "white",
+    padding: "20px",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+    animation: "break 2s forwards",
   },
   title: {
     fontSize: "2.5rem",
@@ -145,6 +176,21 @@ const styles = {
     fontSize: "1.5rem",
     color: "#00d1b2",
   },
+  spaceship: {
+    width: "50px",
+    height: "30px",
+    background: "url('/spaceship.png') no-repeat center center",
+    backgroundSize: "contain",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    animation: "fly 5s linear infinite",
+  },
+  breakText: {
+    fontSize: "2rem",
+    color: "#f00",
+    animation: "fadeIn 2s forwards",
+  },
 };
 
 const animations = `
@@ -163,6 +209,33 @@ const animations = `
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(200%, -200%);
+  }
+}
+
+@keyframes break {
+  0% {
+    background-color: #1a1a1a;
+  }
+  100% {
+    background-color: #000;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 `;
