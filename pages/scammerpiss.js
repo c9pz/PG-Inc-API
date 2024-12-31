@@ -1,95 +1,85 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
+import styles from "../ConvertScammer.module.css";  // Import the CSS module
 
 function ConvertScammer() {
-  const [isConverted, setIsConverted] = useState(false)
-  const [isBigger, setIsBigger] = useState(false)
-  const [flooding, setFlooding] = useState(false)
-  const [showRestart, setShowRestart] = useState(false)
+  const [isConverted, setIsConverted] = useState(false);
+  const [isBiggerPiss, setIsBiggerPiss] = useState(false);
+  const [isFloodPiss, setIsFloodPiss] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const handleConvert = () => {
-    setIsConverted(true)
+    setIsConverted(true);
     setTimeout(() => {
-      alert("scammer converted to piss, lmao!")
-    }, 2000)
-  }
+      alert("Scammer converted to piss, lmao!");
+    }, 2000);
+  };
 
   const handleBiggerPiss = () => {
-    setIsBigger(true)
+    setIsBiggerPiss(true);
     setTimeout(() => {
-      setFlooding(true)
-    }, 500)
-  }
+      setIsFloodPiss(true);
+    }, 1000);
+  };
 
   const handleFloodPiss = () => {
-    setFlooding(true)
     setTimeout(() => {
-      setShowRestart(true)
-    }, 3000)
-  }
-
-  const handleRestart = () => {
-    setIsConverted(false)
-    setIsBigger(false)
-    setFlooding(false)
-    setShowRestart(false)
-  }
+      setIsGameOver(true);
+    }, 1000);
+  };
 
   useEffect(() => {
-    const disableRightClick = (e) => e.preventDefault()
+    const disableRightClick = (e) => e.preventDefault();
+    document.addEventListener("contextmenu", disableRightClick);
+
     const disableShortcuts = (e) => {
-      if (
-        e.ctrlKey &&
-        ["u", "U", "i", "I", "c", "C", "j", "J"].includes(e.key)
-      ) {
-        e.preventDefault()
+      if (e.ctrlKey && ["u", "U", "i", "I", "c", "C", "j", "J"].includes(e.key)) {
+        e.preventDefault();
       }
       if ([123].includes(e.keyCode)) {
-        e.preventDefault()
+        e.preventDefault();
       }
-    }
-    const disableTextSelection = () => false
-    const disableDragging = (e) => e.preventDefault()
+    };
+    document.addEventListener("keydown", disableShortcuts);
 
-    document.addEventListener("contextmenu", disableRightClick)
-    document.addEventListener("keydown", disableShortcuts)
-    document.addEventListener("selectstart", disableTextSelection)
-    document.addEventListener("dragstart", disableDragging)
+    const disableTextSelection = () => false;
+    document.addEventListener("selectstart", disableTextSelection);
+
+    const disableDragging = (e) => e.preventDefault();
+    document.addEventListener("dragstart", disableDragging);
 
     return () => {
-      document.removeEventListener("contextmenu", disableRightClick)
-      document.removeEventListener("keydown", disableShortcuts)
-      document.removeEventListener("selectstart", disableTextSelection)
-      document.removeEventListener("dragstart", disableDragging)
-    }
-  }, [])
+      document.removeEventListener("contextmenu", disableRightClick);
+      document.removeEventListener("keydown", disableShortcuts);
+      document.removeEventListener("selectstart", disableTextSelection);
+      document.removeEventListener("dragstart", disableDragging);
+    };
+  }, []);
 
   return (
-    <div className="container">
-      <h1>scammer convertinator 5000</h1>
-      <p>hit the button to turn that scammer into piss!</p>
-      <div className={`scammer ${isConverted ? "converted" : ""} ${isBigger ? "bigger" : ""} ${flooding ? "flooding" : ""}`}></div>
+    <div className={styles.container}>
+      <h1>Scammer Convertinator 5000</h1>
+      <p>Hit the button to turn that scammer into piss!</p>
+      <div className={`${styles.scammer} ${isConverted ? styles.converted : ""} ${isBiggerPiss ? styles.biggerPiss : ""}`}></div>
       <button onClick={handleConvert} disabled={isConverted}>
-        {isConverted ? "converted!" : "convert that scammer"}
+        {isConverted ? "Converted!" : "Convert that Scammer"}
       </button>
-      {isConverted && !isBigger && (
-        <button onClick={handleBiggerPiss}>bigger piss</button>
+      {isConverted && !isBiggerPiss && (
+        <button onClick={handleBiggerPiss}>Bigger Piss</button>
       )}
-      {isBigger && !flooding && (
-        <button onClick={handleFloodPiss}>FLOOD PISS LMAO</button>
+      {isBiggerPiss && !isFloodPiss && (
+        <button onClick={handleFloodPiss}>Flood Piss LMAO</button>
       )}
-      {flooding && (
-        <div className="flood-effect">
-          <div className="piss-liquid"></div>
-        </div>
+      {isFloodPiss && !isGameOver && (
+        <div className={styles.floodPiss}></div>
       )}
-      {showRestart && (
-        <div>
-          <p>you pissed me off..</p>
-          <button onClick={handleRestart}>Restart</button>
-        </div>
+      {isGameOver && (
+        <>
+          <div className={styles.gameOverText}>You pissed me off...</div>
+          <button onClick={() => window.location.reload()}>Restart</button>
+        </>
       )}
     </div>
-  )
+  );
 }
 
-export default ConvertScammer
+export default ConvertScammer;
