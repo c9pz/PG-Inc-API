@@ -1,62 +1,72 @@
-.container {
-  text-align: center;
-  font-family: 'Comic Sans MS', sans-serif;
-  margin: 50px auto;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
-}
-
 .scammer {
-  width: 100px;
-  height: 150px;
-  background-color: #555;
-  margin: 20px auto;
-  border-radius: 10px;
-  position: relative;
-  transition: all 2s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 .scammer.converted {
-  width: 100px;
-  height: 20px;
-  background-color: #f0e68c;
-  border-radius: 50%;
-  animation: splash 1.5s ease-in-out infinite;
+  background-color: yellow;
+}
+
+.scammer.bigger {
+  width: 150px;
+  height: 150px;
+  transition: all 0.5s ease;
+}
+
+.flood-effect {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 0, 0.7);
+  animation: flood 3s forwards;
+}
+
+@keyframes flood {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 100%;
+  }
+}
+
+.piss-liquid {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 0, 0.7);
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  margin-top: 10px;
   cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-button:hover {
-  background-color: #0056b3;
 }
 
 button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+  opacity: 0.5;
 }
 
-@keyframes splash {
-  0%, 100% {
-    transform: scale(1);
+button, p {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+button:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+button:nth-of-type(2) {
+  animation-delay: 1s;
+}
+
+button:nth-of-type(3) {
+  animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  50% {
-    transform: scale(1.1);
+  100% {
+    opacity: 1;
   }
 }
