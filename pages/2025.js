@@ -74,13 +74,13 @@ export default function NewYear2025() {
     <div style={styles.container}>
       <div style={styles.centerContent}>
         <div style={styles.messageContainer}>
-          <h1 style={styles.happyNewYear}>🎆 Happy New Year 2025! 🎆</h1>
+          <h1 style={styles.happyNewYear}>🎉 happy new year 2025! 🎉</h1>
           <p style={styles.message}>
-            Wishing you a year filled with joy, success, and celebration!
+            yo! let's make 2025 the best year ever. time to vibe!
           </p>
         </div>
         <button onClick={handleDeployClick} style={styles.deployButton}>
-          Deploy PG Inc
+          deploy pg inc
         </button>
       </div>
       {fireworksActive && <Fireworks />}
