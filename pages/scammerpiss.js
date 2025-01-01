@@ -88,6 +88,11 @@ function Zx9fPjs4() {
       <head>
         <link rel="icon" href="https://i.ibb.co/Z6GvX8q/JUSSI0-N-AVATAR-HEADSHOT-RBLX.png" />
         <title>scammer to piss</title>
+        <meta property="og:title" content="scammer to piss" />
+        <meta property="og:description" content="dwcs piss me off so thats why i made this" />
+        <meta property="og:image" content="https://i.ibb.co/TBjcKqn/IMG-9842.jpg" />
+        <meta property="og:url" content="https://pg-inc-api.vercel.app/scammerpiss" />
+        <meta property="og:type" content="website" />
       </head>
     </div>
   )
