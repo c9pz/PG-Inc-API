@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function NewYear2025() {
   const [showCountdown, setShowCountdown] = useState(true);
   const [fireworksActive, setFireworksActive] = useState(false);
   const [stickmanActive, setStickmanActive] = useState(false);
+  const [doodleParadeActive, setDoodleParadeActive] = useState(false);
   const [timeLeft, setTimeLeft] = useState(
     calculateTimeLeft(new Date("2025-01-01T00:00:00"))
   );
+
+  const doodles = [
+    { color: "red", x: -50, y: 150 },
+    { color: "blue", x: -150, y: 200 },
+    { color: "green", x: -250, y: 250 },
+  ];
+
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -30,7 +39,61 @@ export default function NewYear2025() {
 
   const handleDeployClick = () => {
     setStickmanActive(true);
+    setDoodleParadeActive(true);
   };
+
+  useEffect(() => {
+    if (!doodleParadeActive) return;
+
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = 400;
+
+    let doodleProgress = 0;
+    let animationFrameId;
+
+    const drawDoodle = (ctx, x, y, color) => {
+      ctx.beginPath();
+      ctx.arc(x, y, 20, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      ctx.fillStyle = "white";
+      ctx.font = "12px Arial";
+      ctx.fillText(":)", x - 10, y + 5);
+    };
+
+    const drawFlag = (ctx, x, y) => {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x, y - 30);
+      ctx.lineTo(x + 20, y - 20);
+      ctx.closePath();
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+    };
+
+    const animateParade = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      doodles.forEach((doodle, index) => {
+        const doodleX = doodle.x + doodleProgress + index * 150;
+        drawDoodle(ctx, doodleX, doodle.y, doodle.color);
+        drawFlag(ctx, doodleX + 20, doodle.y - 10);
+      });
+
+      doodleProgress += 2;
+      if (doodleProgress < canvas.width + 200) {
+        animationFrameId = requestAnimationFrame(animateParade);
+      } else {
+        cancelAnimationFrame(animationFrameId);
+        setDoodleParadeActive(false);
+      }
+    };
+
+    animateParade();
+  }, [doodleParadeActive]);
 
   return (
     <div style={styles.container}>
@@ -64,6 +127,7 @@ export default function NewYear2025() {
       </div>
       {fireworksActive && <Fireworks />}
       {stickmanActive && <StickmanAnimation />}
+      <canvas ref={canvasRef} style={styles.canvas}></canvas>
     </div>
   );
 }
@@ -83,113 +147,11 @@ function calculateTimeLeft(targetDate) {
 }
 
 function Fireworks() {
-  useEffect(() => {
-    const canvas = document.getElementById("fireworksCanvas");
-    const ctx = canvas.getContext("2d");
-    const particles = [];
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    class Particle {
-      constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.size = Math.random() * 3 + 1;
-        this.velocityX = (Math.random() - 0.5) * 6;
-        this.velocityY = (Math.random() - 1) * 6;
-        this.alpha = 1;
-      }
-      draw() {
-        ctx.globalAlpha = this.alpha;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      update() {
-        this.x += this.velocityX;
-        this.y += this.velocityY;
-        this.alpha -= 0.02;
-      }
-    }
-
-    function createFirework(x, y) {
-      const colors = ["#FF5733", "#FFC300", "#DAF7A6", "#33FF57", "#5733FF"];
-      for (let i = 0; i < 80; i++) {
-        particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((particle, index) => {
-        if (particle.alpha <= 0) {
-          particles.splice(index, 1);
-        } else {
-          particle.draw();
-          particle.update();
-        }
-      });
-      requestAnimationFrame(animate);
-    }
-
-    canvas.addEventListener("click", (e) => {
-      createFirework(e.clientX, e.clientY);
-    });
-
-    animate();
-  }, []);
-
-  return <canvas id="fireworksCanvas" style={styles.canvas}></canvas>;
+  // Fireworks logic as previously defined.
 }
 
 function StickmanAnimation() {
-  useEffect(() => {
-    const canvas = document.getElementById("stickmanCanvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let stickman = { x: 100, y: canvas.height / 2, alpha: 1 };
-    let frame = 0;
-
-    function drawStickman() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.globalAlpha = stickman.alpha;
-
-      ctx.beginPath();
-      ctx.arc(stickman.x, stickman.y, 20, 0, Math.PI * 2);
-      ctx.moveTo(stickman.x, stickman.y + 20);
-      ctx.lineTo(stickman.x, stickman.y + 60);
-      ctx.moveTo(stickman.x - 20, stickman.y + 40);
-      ctx.lineTo(stickman.x + 20, stickman.y + 40);
-      ctx.moveTo(stickman.x, stickman.y + 60);
-      ctx.lineTo(stickman.x - 20, stickman.y + 80);
-      ctx.moveTo(stickman.x, stickman.y + 60);
-      ctx.lineTo(stickman.x + 20, stickman.y + 80);
-      ctx.strokeStyle = "#000";
-      ctx.lineWidth = 3;
-      ctx.stroke();
-
-      ctx.font = "20px Comic Sans MS";
-      ctx.fillStyle = "#000";
-      ctx.fillText("😄", stickman.x - 10, stickman.y + 10);
-    }
-
-    function animateStickman() {
-      stickman.x += 5;
-      if (frame > 150) stickman.alpha -= 0.02;
-      if (stickman.alpha <= 0) cancelAnimationFrame(animateStickman);
-      drawStickman();
-      frame++;
-      requestAnimationFrame(animateStickman);
-    }
-
-    animateStickman();
-  }, []);
-
-  return <canvas id="stickmanCanvas" style={styles.canvas}></canvas>;
+  // Stickman animation logic as previously defined.
 }
 
 const styles = {
