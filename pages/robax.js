@@ -203,6 +203,17 @@ function RobuxPage() {
           width: 40px;
           height: 40px;
         }
+
+        .close {
+          background: transparent;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+        }
+
+        .close:hover {
+          background: transparent;
+        }
       `}</style>
     </div>
   );
