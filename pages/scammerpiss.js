@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 
-function Zx9f!_Pjs4() {
+function Zx9fPjs4() {
   const [kL_ConvertedX, setkL_ConvertedX] = useState(false)
 
-  const W7y4!9_z = () => {
+  const W7y49z = () => {
     setkL_ConvertedX(true)
     setTimeout(() => {
       alert("scammer converted to piss, lmao!")
@@ -15,7 +15,7 @@ function Zx9f!_Pjs4() {
       <h1>scammer convertinator 5000</h1>
       <p>hit the button to turn that scammer into piss!</p>
       <div className={`scammer ${kL_ConvertedX ? "converted" : ""}`}></div>
-      <button onClick={W7y4!9_z} disabled={kL_ConvertedX}>
+      <button onClick={W7y49z} disabled={kL_ConvertedX}>
         {kL_ConvertedX ? "converted!" : "convert that scammer"}
       </button>
 
@@ -87,4 +87,4 @@ function Zx9f!_Pjs4() {
   )
 }
 
-export default Zx9f!_Pjs4
+export default Zx9fPjs4
