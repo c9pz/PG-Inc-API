@@ -22,8 +22,12 @@ function RobuxPage() {
             <div className="modal-confirmation">
               <div className="modal-dialog">
                 <div className="modal-header">
-                  <button type="button" className="close" onClick={closeModal}>
-                    Close
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={closeModal}
+                  >
+                    <i className="fa fa-times" style={{ color: "black" }}></i>
                   </button>
                   <h5 className="modal-title">Insufficient Robux</h5>
                 </div>
@@ -34,12 +38,12 @@ function RobuxPage() {
                         <div className="item-card-thumb">
                           <img
                             alt="item preview"
-                            src="https://tr.rbxcdn.com/180DAY-2b8a1bf9da1152bc373516ab3c4dddd0/110/110/Hat/Png/noFilter"
+                            src="https://i.ibb.co/3BYwhwz/Screenshot-2025-01-01-161531.png"
                           />
                         </div>
                         <div className="item-info text-name">
                           <div className="text-overflow item-card-name">
-                            HellCat Car Keys
+                         piss role (dwc) + vencord   
                           </div>
                           <div className="text-robux item-card-price">
                             <span className="text-robux">10</span>
@@ -47,7 +51,7 @@ function RobuxPage() {
                         </div>
                       </div>
                       <div className="modal-message-block text-center border-top">
-                        You need to give piss for it, or buy it with{" "}
+                        you need to give piss for it or buy it with{" "}
                         <span className="text-robux">10</span> tokens lmao (you
                         won’t be charged but you won’t get the item too)
                       </div>
@@ -91,7 +95,11 @@ function RobuxPage() {
         button {
           padding: 12px 25px;
           font-size: 1.1rem;
-          background: linear-gradient(90deg, rgba(33, 150, 243, 1) 0%, rgba(3, 169, 244, 1) 100%);
+          background: linear-gradient(
+            90deg,
+            rgba(33, 150, 243, 1) 0%,
+            rgba(3, 169, 244, 1) 100%
+          );
           color: white;
           border: none;
           border-radius: 4px;
@@ -100,7 +108,11 @@ function RobuxPage() {
         }
 
         button:hover {
-          background: linear-gradient(90deg, rgba(3, 169, 244, 1) 0%, rgba(33, 150, 243, 1) 100%);
+          background: linear-gradient(
+            90deg,
+            rgba(3, 169, 244, 1) 0%,
+            rgba(33, 150, 243, 1) 100%
+          );
           transform: scale(1.05);
         }
 
@@ -138,6 +150,14 @@ function RobuxPage() {
           display: flex;
           justify-content: space-between;
           align-items: center;
+        }
+
+        .modal-header .close {
+          background: none;
+          border: none;
+          color: black;
+          font-size: 1.5rem;
+          cursor: pointer;
         }
 
         .modal-body {
