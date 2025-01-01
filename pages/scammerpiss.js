@@ -12,14 +12,6 @@ function Zx9fPjs4() {
 
   return (
     <div className="container">
-      <nav className="navbar">
-        <img
-          src="https://i.ibb.co/Z6GvX8q/JUSSI0-N-AVATAR-HEADSHOT-RBLX.png"
-          alt="Logo"
-          className="logo"
-        />
-        <p className="navbar-text">pg inc</p>
-      </nav>
       <h1>scammer convertinator 5000</h1>
       <p>hit the button to turn that scammer into piss!</p>
       <div className={`scammer ${kL_ConvertedX ? "converted" : ""}`}></div>
@@ -32,27 +24,6 @@ function Zx9fPjs4() {
           text-align: center;
           font-family: 'Comic Sans MS', sans-serif;
           margin: 50px auto;
-        }
-
-        .navbar {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #333;
-          padding: 5px 10px;
-          font-size: 1rem;
-        }
-
-        .logo {
-          width: 30px;
-          height: 30px;
-          margin-right: 10px;
-        }
-
-        .navbar-text {
-          font-family: 'Comic Sans MS', sans-serif;
-          font-size: 1.2rem;
-          color: white;
         }
 
         h1 {
@@ -112,6 +83,11 @@ function Zx9fPjs4() {
           }
         }
       `}</style>
+
+      <head>
+        <link rel="icon" href="https://i.ibb.co/Z6GvX8q/JUSSI0-N-AVATAR-HEADSHOT-RBLX.png" />
+        <title>scammer to piss</title>
+      </head>
     </div>
   )
 }
