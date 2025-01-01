@@ -9,7 +9,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "node-fetch": "^3.0.0", 
+    "node-fetch": "^3.0.0",
+"@fortawesome/react-fontawesome": "^latest_version",
+  "@fortawesome/free-solid-svg-icons": "^latest_version", 
     "next": "^13.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
