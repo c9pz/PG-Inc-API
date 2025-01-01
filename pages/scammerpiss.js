@@ -12,6 +12,14 @@ function Zx9fPjs4() {
 
   return (
     <div className="container">
+      <nav className="navbar">
+        <img
+          src="https://i.ibb.co/Z6GvX8q/JUSSI0-N-AVATAR-HEADSHOT-RBLX.png"
+          alt="Logo"
+          className="logo"
+        />
+        <p className="navbar-text">pg inc</p>
+      </nav>
       <h1>scammer convertinator 5000</h1>
       <p>hit the button to turn that scammer into piss!</p>
       <div className={`scammer ${kL_ConvertedX ? "converted" : ""}`}></div>
@@ -24,6 +32,26 @@ function Zx9fPjs4() {
           text-align: center;
           font-family: 'Comic Sans MS', sans-serif;
           margin: 50px auto;
+        }
+
+        .navbar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #333;
+          padding: 10px;
+        }
+
+        .logo {
+          width: 50px;
+          height: 50px;
+          margin-right: 10px;
+        }
+
+        .navbar-text {
+          font-family: 'Source Sans Pro', sans-serif;
+          font-size: 1.5rem;
+          color: white;
         }
 
         h1 {
