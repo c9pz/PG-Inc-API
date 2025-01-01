@@ -13,7 +13,7 @@ function Zx9fPjs4() {
   return (
     <div className="container">
       <h1>scammer convertinator 5000</h1>
-      <p>hit the button to turn that scammer into piss!</p>
+      <p>lmao piss</p>
       <div className={`scammer ${kL_ConvertedX ? "converted" : ""}`}></div>
       <button onClick={W7y49z} disabled={kL_ConvertedX}>
         {kL_ConvertedX ? "converted!" : "convert that scammer"}
