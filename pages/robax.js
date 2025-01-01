@@ -27,7 +27,7 @@ function RobuxPage() {
         />
         <meta
           property="og:image"
-          content="https://i.ibb.co/3BYwhwz/Screenshot-2025-01-01-161531.png""
+          content="https://i.ibb.co/3BYwhwz/Screenshot-2025-01-01-161531.png"
         />
         <meta property="og:url" content="https://pg-inc-api.vercel.app/robax" />
       </Head>
