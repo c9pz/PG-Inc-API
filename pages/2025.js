@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
 export default function NewYear2025() {
+  const [fadeOut, setFadeOut] = useState(false);
   const [fireworksActive, setFireworksActive] = useState(true);
   const [stickmanActive, setStickmanActive] = useState(false);
   const [doodleParadeActive, setDoodleParadeActive] = useState(false);
@@ -8,8 +9,12 @@ export default function NewYear2025() {
   const canvasRef = useRef(null);
 
   const handleDeployClick = () => {
-    setStickmanActive(true);
-    setDoodleParadeActive(true);
+    setFadeOut(true);
+
+    // Trigger animation before redirect
+    setTimeout(() => {
+      window.location.href = "https://pg-inc-api.vercel.app";
+    }, 1000); // Redirect after 1 second animation
   };
 
   useEffect(() => {
@@ -72,7 +77,7 @@ export default function NewYear2025() {
 
   return (
     <div style={styles.container}>
-      <div style={styles.centerContent}>
+      <div style={{ ...styles.centerContent, opacity: fadeOut ? 0 : 1 }}>
         <div style={styles.messageContainer}>
           <h1 style={styles.happyNewYear}>🎉 happy new year 2025! 🎉</h1>
           <p style={styles.message}>
@@ -113,6 +118,7 @@ const styles = {
     position: "relative",
     top: "50%",
     transform: "translateY(-50%)",
+    transition: "opacity 1s ease-out",
   },
   messageContainer: {
     textAlign: "center",
