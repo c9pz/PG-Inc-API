@@ -23,7 +23,7 @@ function RobuxPage() {
         <meta property="og:title" content="lawmawn - offlarp" />
         <meta
           property="og:description"
-          content="larping is pissing me off"
+          content="offlarp X2395"
         />
         <meta
           property="og:image"
@@ -62,10 +62,10 @@ function RobuxPage() {
                         </div>
                         <div className="item-info text-name">
                           <div className="text-overflow item-card-name">
-                            offlarp + some piss
+                            offlarp X2395
                           </div>
                           <div className="text-robux item-card-price">
-                            <span className="text-robux">10</span>
+                            <span className="text-robux">100</span>
                           </div>
                         </div>
                       </div>
@@ -77,7 +77,7 @@ function RobuxPage() {
                     </div>
                     <div className="modal-btns">
                       <a href="" id="confirm-btn" className="btn-primary-md">
-                        get tokens and item
+                        get tokens and item (doesnt work)
                       </a>
                       <a href="" id="decline-btn" className="btn-control-md">
                         cancel
