@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 
 function RobuxPage() {
   const [showModal, setShowModal] = useState(false);
@@ -13,6 +14,20 @@ function RobuxPage() {
 
   return (
     <div className="robux-container">
+      <Helmet>
+        <meta property="og:title" content="robax shops inc ltd co" />
+        <meta
+          property="og:description"
+          content="piss role + vencord limited offer DO NOT MISS!!!"
+        />
+        <meta
+          property="og:image"
+          content="https://i.ibb.co/3BYwhwz/Screenshot-2025-01-01-161531.png"
+        />
+        <meta property="og:url" content="https://pg-inc-api.vercel.app/robax" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
       <h1>Buy Robax!!1!!</h1>
       <button onClick={handleButtonClick}>Buy Robax!!1!!</button>
 
@@ -29,7 +44,7 @@ function RobuxPage() {
                   >
                     <i className="fa fa-times" style={{ color: "black" }}></i>
                   </button>
-                  <h5 className="modal-title">Insufficient Robux</h5>
+                  <h5 className="modal-title">Insufficient Tokens lmao</h5>
                 </div>
                 <div className="modal-body">
                   <div className="modal-top-body">
@@ -43,7 +58,7 @@ function RobuxPage() {
                         </div>
                         <div className="item-info text-name">
                           <div className="text-overflow item-card-name">
-                         piss role (dwc) + vencord   
+                            piss role (dwc) + vencord
                           </div>
                           <div className="text-robux item-card-price">
                             <span className="text-robux">10</span>
