@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function NewYear2025() {
   const [showCountdown, setShowCountdown] = useState(true);
-  const [fireworks, setFireworks] = useState(false);
+  const [fireworksActive, setFireworksActive] = useState(false);
   const [timeLeft, setTimeLeft] = useState(
     calculateTimeLeft(new Date("2025-01-01T00:00:00"))
   );
@@ -20,7 +20,7 @@ export default function NewYear2025() {
       ) {
         clearInterval(timer);
         setShowCountdown(false);
-        setFireworks(true);
+        setFireworksActive(true);
       }
     }, 1000);
 
@@ -29,22 +29,32 @@ export default function NewYear2025() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>🎉 Happy New Year 2025! 🎉</h1>
-      {showCountdown && (
-        <div style={styles.countdown}>
-          <p style={styles.time}>
-            {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m{" "}
-            {timeLeft.seconds}s
-          </p>
-          <p style={styles.subText}>until midnight!</p>
-        </div>
-      )}
-      {fireworks && <Fireworks />}
-      {!showCountdown && (
-        <p style={styles.message}>
-          It's 2025! May your year be filled with joy and success! 🎆
-        </p>
-      )}
+      <div style={styles.centerContent}>
+        {showCountdown && (
+          <>
+            <h1 style={styles.title}>New Year 2025 Countdown</h1>
+            <div style={styles.countdown}>
+              <span style={styles.timeBox}>{timeLeft.days}</span>
+              <span style={styles.label}>Days</span>
+              <span style={styles.timeBox}>{timeLeft.hours}</span>
+              <span style={styles.label}>Hours</span>
+              <span style={styles.timeBox}>{timeLeft.minutes}</span>
+              <span style={styles.label}>Minutes</span>
+              <span style={styles.timeBox}>{timeLeft.seconds}</span>
+              <span style={styles.label}>Seconds</span>
+            </div>
+          </>
+        )}
+        {!showCountdown && (
+          <div style={styles.messageContainer}>
+            <h1 style={styles.happyNewYear}>🎆 Happy New Year 2025! 🎆</h1>
+            <p style={styles.message}>
+              Wishing you a year filled with joy, success, and celebration!
+            </p>
+          </div>
+        )}
+      </div>
+      {fireworksActive && <Fireworks />}
     </div>
   );
 }
@@ -76,9 +86,9 @@ function Fireworks() {
         this.x = x;
         this.y = y;
         this.color = color;
-        this.size = Math.random() * 5 + 1;
-        this.velocityX = (Math.random() - 0.5) * 5;
-        this.velocityY = (Math.random() - 1) * 5;
+        this.size = Math.random() * 3 + 1;
+        this.velocityX = (Math.random() - 0.5) * 6;
+        this.velocityY = (Math.random() - 1) * 6;
         this.alpha = 1;
       }
       draw() {
@@ -91,13 +101,13 @@ function Fireworks() {
       update() {
         this.x += this.velocityX;
         this.y += this.velocityY;
-        this.alpha -= 0.01;
+        this.alpha -= 0.02;
       }
     }
 
     function createFirework(x, y) {
-      const colors = ["#ff0000", "#00ff00", "#0000ff", "#ffcc00", "#ff00ff"];
-      for (let i = 0; i < 50; i++) {
+      const colors = ["#FF5733", "#FFC300", "#DAF7A6", "#33FF57", "#5733FF"];
+      for (let i = 0; i < 80; i++) {
         particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
       }
     }
@@ -127,36 +137,50 @@ function Fireworks() {
 
 const styles = {
   container: {
-    fontFamily: "'Arial', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     textAlign: "center",
-    backgroundColor: "#000",
+    background: "linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d)",
     color: "#fff",
-    minHeight: "100vh",
-    padding: "20px",
-    position: "relative",
+    height: "100vh",
+    margin: 0,
     overflow: "hidden",
+    position: "relative",
+  },
+  centerContent: {
+    position: "relative",
+    top: "50%",
+    transform: "translateY(-50%)",
   },
   title: {
-    fontSize: "3rem",
+    fontSize: "2.5rem",
     marginBottom: "20px",
-    color: "#ffcc00",
   },
   countdown: {
-    fontSize: "2rem",
-    color: "#00ff00",
-    marginBottom: "30px",
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
   },
-  time: {
-    fontSize: "4rem",
+  timeBox: {
+    fontSize: "3rem",
+    fontWeight: "bold",
+    background: "rgba(255, 255, 255, 0.2)",
+    padding: "10px 20px",
+    borderRadius: "10px",
   },
-  subText: {
-    fontSize: "1.5rem",
-    color: "#ccc",
+  label: {
+    fontSize: "1rem",
+    marginTop: "20px",
+  },
+  messageContainer: {
+    textAlign: "center",
+  },
+  happyNewYear: {
+    fontSize: "3rem",
+    marginBottom: "10px",
   },
   message: {
-    fontSize: "2rem",
-    marginTop: "20px",
-    color: "#ffcc00",
+    fontSize: "1.5rem",
+    marginTop: "10px",
   },
   canvas: {
     position: "absolute",
