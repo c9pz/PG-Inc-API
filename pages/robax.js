@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function RobuxPage() {
   const [showModal, setShowModal] = useState(false);
+  const [buttonState, setButtonState] = useState("default");
 
   const handleButtonClick = () => {
     setShowModal(true);
@@ -9,6 +10,11 @@ function RobuxPage() {
 
   const closeModal = () => {
     setShowModal(false);
+    setButtonState("default");
+  };
+
+  const handleScamAnimation = () => {
+    setButtonState("piss");
   };
 
   return (
@@ -23,42 +29,38 @@ function RobuxPage() {
               <div className="modal-dialog">
                 <div className="modal-header">
                   <button type="button" className="close" onClick={closeModal}>
-                    Close
+                    <span aria-hidden="true">×</span>
                   </button>
                   <h5 className="modal-title">Insufficient Robux</h5>
                 </div>
                 <div className="modal-body">
                   <div className="modal-top-body">
                     <div className="modal-message">
-                      <div className="item-card-container item-preview">
-                        <div className="item-card-thumb">
-                          <img
-                            alt="item preview"
-                            src="https://tr.rbxcdn.com/180DAY-2b8a1bf9da1152bc373516ab3c4dddd0/110/110/Hat/Png/noFilter"
-                          />
-                        </div>
-                        <div className="item-info text-name">
-                          <div className="text-overflow item-card-name">
-                            HellCat Car Keys
-                          </div>
-                          <div className="text-robux item-card-price">
-                            <span className="text-robux">10</span>
-                          </div>
-                        </div>
-                      </div>
                       <div className="modal-message-block text-center border-top">
-                        You need to give piss for it, or buy it with{" "}
-                        <span className="text-robux">10</span> tokens lmao (you
-                        won’t be charged but you won’t get the item too)
+                        you need to give piss for it, or buy it with 10 tokens
+                        lmao (you won't be charged but you won't get the item
+                        too).
                       </div>
                     </div>
                     <div className="modal-btns">
-                      <a href="" id="confirm-btn" className="btn-primary-md">
-                        Buy Robux and Item
-                      </a>
-                      <a href="" id="decline-btn" className="btn-control-md">
+                      {buttonState === "default" ? (
+                        <button
+                          id="confirm-btn"
+                          className="btn-primary-md"
+                          onClick={handleScamAnimation}
+                        >
+                          Get Tokens + Item
+                        </button>
+                      ) : (
+                        <div className="scam-animation">Piss</div>
+                      )}
+                      <button
+                        id="decline-btn"
+                        className="btn-control-md"
+                        onClick={closeModal}
+                      >
                         Cancel
-                      </a>
+                      </button>
                     </div>
                     <div className="loading modal-processing">
                       <img
@@ -79,101 +81,58 @@ function RobuxPage() {
       <style jsx>{`
         .robux-container {
           text-align: center;
-          font-family: "Comic Sans MS", sans-serif;
           margin: 50px auto;
         }
 
-        h1 {
-          font-size: 2rem;
-          margin-bottom: 20px;
-        }
-
-        button {
-          padding: 12px 25px;
-          font-size: 1.1rem;
-          background: linear-gradient(90deg, rgba(33, 150, 243, 1) 0%, rgba(3, 169, 244, 1) 100%);
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        button:hover {
-          background: linear-gradient(90deg, rgba(3, 169, 244, 1) 0%, rgba(33, 150, 243, 1) 100%);
-          transform: scale(1.05);
-        }
-
-        .simplemodal-container {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.5);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .simplemodal-wrap {
-          background: white;
-          border-radius: 10px;
-          width: 80%;
-          max-width: 600px;
-          padding: 20px;
-        }
-
-        .modal-confirmation {
-          background: white;
-          border-radius: 10px;
-        }
-
-        .modal-dialog {
-          background: white;
-          border-radius: 10px;
-        }
-
-        .modal-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .modal-body {
-          margin-top: 20px;
-        }
-
         .modal-btns {
-          margin-top: 20px;
           display: flex;
           justify-content: space-between;
-        }
-
-        .modal-btns a {
-          padding: 10px 20px;
-          border-radius: 5px;
-          text-decoration: none;
+          align-items: center;
+          margin-top: 20px;
         }
 
         .btn-primary-md {
+          padding: 10px 20px;
           background-color: #4caf50;
           color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: transform 0.2s ease;
+        }
+
+        .btn-primary-md:hover {
+          transform: scale(1.05);
         }
 
         .btn-control-md {
+          padding: 10px 20px;
           background-color: #f44336;
           color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: transform 0.2s ease;
         }
 
-        .loading {
-          margin-top: 20px;
-          text-align: center;
+        .btn-control-md:hover {
+          transform: scale(1.05);
         }
 
-        .loading-default {
-          width: 40px;
-          height: 40px;
+        .scam-animation {
+          color: yellow;
+          font-size: 1.5rem;
+          font-weight: bold;
+          animation: shake 0.5s infinite alternate;
+        }
+
+        @keyframes shake {
+          0% {
+            transform: translateX(-5px);
+          }
+          100% {
+            transform: translateX(5px);
+          }
         }
       `}</style>
     </div>
