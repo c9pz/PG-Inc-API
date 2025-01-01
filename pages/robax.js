@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faCoins } from "@fortawesome/free-solid-svg-icons";
 
 function RobuxPage() {
   const [showModal, setShowModal] = useState(false);
@@ -15,8 +13,8 @@ function RobuxPage() {
 
   return (
     <div className="robux-container">
-      <h1>Buy Robux</h1>
-      <button onClick={handleButtonClick}>Buy Robux</button>
+      <h1>Buy Robax!!1!!</h1>
+      <button onClick={handleButtonClick}>Buy Robax!!1!!</button>
 
       {showModal && (
         <div className="simplemodal-container">
@@ -25,11 +23,10 @@ function RobuxPage() {
               <div className="modal-dialog">
                 <div className="modal-header">
                   <button type="button" className="close" onClick={closeModal}>
-                    <FontAwesomeIcon icon={faTimes} />
+                    Close
                   </button>
                   <h5 className="modal-title">Insufficient Robux</h5>
                 </div>
-
                 <div className="modal-body">
                   <div className="modal-top-body">
                     <div className="modal-message">
@@ -45,64 +42,14 @@ function RobuxPage() {
                             HellCat Car Keys
                           </div>
                           <div className="text-robux item-card-price">
-                            <span style={{ position: "relative", display: "inline-block" }}>
-                              <FontAwesomeIcon
-                                icon={faCoins}
-                                style={{
-                                  color: "black",
-                                  position: "absolute",
-                                  left: 0,
-                                  top: "50%",
-                                  transform: "translate(-50%, -50%)",
-                                  zIndex: -1,
-                                  fontSize: "1.2em",
-                                }}
-                              />
-                              <span
-                                style={{
-                                  position: "relative",
-                                  zIndex: 1,
-                                  paddingLeft: "1.5em",
-                                }}
-                              >
-                                10
-                              </span>
-                            </span>
-                            <span
-                              className="text-secondary"
-                              style={{ color: "rgb(117, 117, 117)" }}
-                            >
-                              ($0.75)
-                            </span>
+                            <span className="text-robux">10</span>
                           </div>
                         </div>
                       </div>
                       <div className="modal-message-block text-center border-top">
-                        you need to give piss for it, or buy it with
-                        <span style={{ position: "relative", display: "inline-block", marginLeft: "5px" }}>
-                          <FontAwesomeIcon
-                            icon={faCoins}
-                            style={{
-                              color: "black",
-                              position: "absolute",
-                              left: 0,
-                              top: "50%",
-                              transform: "translate(-50%, -50%)",
-                              zIndex: -1,
-                              fontSize: "1.2em",
-                            }}
-                          />
-                          <span
-                            style={{
-                              position: "relative",
-                              zIndex: 1,
-                              paddingLeft: "1.5em",
-                            }}
-                          >
-                            10
-                          </span>
-                        </span>
-                        lmao (you won’t be charged but you won’t get the item too)
+                        You need to give piss for it, or buy it with{" "}
+                        <span className="text-robux">10</span> tokens lmao (you
+                        won’t be charged but you won’t get the item too)
                       </div>
                     </div>
                     <div className="modal-btns">
@@ -122,10 +69,7 @@ function RobuxPage() {
                     </div>
                   </div>
                 </div>
-                <div
-                  className="modal-footer text-footer"
-                  style={{ display: "none" }}
-                ></div>
+                <div className="modal-footer text-footer" style={{ display: "none" }}></div>
               </div>
             </div>
           </div>
@@ -147,11 +91,7 @@ function RobuxPage() {
         button {
           padding: 12px 25px;
           font-size: 1.1rem;
-          background: linear-gradient(
-            90deg,
-            rgba(33, 150, 243, 1) 0%,
-            rgba(3, 169, 244, 1) 100%
-          );
+          background: linear-gradient(90deg, rgba(33, 150, 243, 1) 0%, rgba(3, 169, 244, 1) 100%);
           color: white;
           border: none;
           border-radius: 4px;
@@ -160,11 +100,7 @@ function RobuxPage() {
         }
 
         button:hover {
-          background: linear-gradient(
-            90deg,
-            rgba(3, 169, 244, 1) 0%,
-            rgba(33, 150, 243, 1) 100%
-          );
+          background: linear-gradient(90deg, rgba(3, 169, 244, 1) 0%, rgba(33, 150, 243, 1) 100%);
           transform: scale(1.05);
         }
 
