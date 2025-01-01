@@ -14,7 +14,9 @@ function Zx9fPjs4() {
     <div className="container">
       <h1>scammer convertinator 5000</h1>
       <p>lmao piss</p>
-      <div className={`scammer ${kL_ConvertedX ? "converted" : ""}`}></div>
+      <div className={`scammer ${kL_ConvertedX ? "converted" : ""}`}>
+        {!kL_ConvertedX && <span className={`warning-emoji ${kL_ConvertedX ? "melt" : ""}`}>⚠️</span>}
+      </div>
       <button onClick={W7y49z} disabled={kL_ConvertedX}>
         {kL_ConvertedX ? "converted!" : "convert that scammer"}
       </button>
@@ -52,6 +54,20 @@ function Zx9fPjs4() {
           background-color: #f0e68c;
           border-radius: 50%;
           animation: splash 1.5s ease-in-out infinite;
+        }
+
+        .warning-emoji {
+          font-size: 2rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .melt {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.5);
         }
 
         button {
