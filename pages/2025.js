@@ -1,41 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 
 export default function NewYear2025() {
-  const [showCountdown, setShowCountdown] = useState(true);
-  const [fireworksActive, setFireworksActive] = useState(false);
+  const [fireworksActive, setFireworksActive] = useState(true);
   const [stickmanActive, setStickmanActive] = useState(false);
   const [doodleParadeActive, setDoodleParadeActive] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(
-    calculateTimeLeft(new Date("2025-01-01T00:00:00"))
-  );
-
-  const doodles = [
-    { color: "red", x: -50, y: 150 },
-    { color: "blue", x: -150, y: 200 },
-    { color: "green", x: -250, y: 250 },
-  ];
 
   const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const updatedTimeLeft = calculateTimeLeft(new Date("2025-01-01T00:00:00"));
-      setTimeLeft(updatedTimeLeft);
-
-      if (
-        updatedTimeLeft.days === 0 &&
-        updatedTimeLeft.hours === 0 &&
-        updatedTimeLeft.minutes === 0 &&
-        updatedTimeLeft.seconds === 0
-      ) {
-        clearInterval(timer);
-        setShowCountdown(false);
-        setFireworksActive(true);
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const handleDeployClick = () => {
     setStickmanActive(true);
@@ -77,14 +47,19 @@ export default function NewYear2025() {
     const animateParade = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      doodles.forEach((doodle, index) => {
-        const doodleX = doodle.x + doodleProgress + index * 150;
-        drawDoodle(ctx, doodleX, doodle.y, doodle.color);
-        drawFlag(ctx, doodleX + 20, doodle.y - 10);
+      const doodles = [
+        { color: "red", x: doodleProgress, y: 150 },
+        { color: "blue", x: doodleProgress + 150, y: 200 },
+        { color: "green", x: doodleProgress + 300, y: 250 },
+      ];
+
+      doodles.forEach((doodle) => {
+        drawDoodle(ctx, doodle.x, doodle.y, doodle.color);
+        drawFlag(ctx, doodle.x + 20, doodle.y - 10);
       });
 
-      doodleProgress += 2;
-      if (doodleProgress < canvas.width + 200) {
+      doodleProgress += 5;
+      if (doodleProgress < canvas.width + 300) {
         animationFrameId = requestAnimationFrame(animateParade);
       } else {
         cancelAnimationFrame(animationFrameId);
@@ -98,29 +73,12 @@ export default function NewYear2025() {
   return (
     <div style={styles.container}>
       <div style={styles.centerContent}>
-        {showCountdown && (
-          <>
-            <h1 style={styles.title}>New Year 2025 Countdown</h1>
-            <div style={styles.countdown}>
-              <span style={styles.timeBox}>{timeLeft.days}</span>
-              <span style={styles.label}>Days</span>
-              <span style={styles.timeBox}>{timeLeft.hours}</span>
-              <span style={styles.label}>Hours</span>
-              <span style={styles.timeBox}>{timeLeft.minutes}</span>
-              <span style={styles.label}>Minutes</span>
-              <span style={styles.timeBox}>{timeLeft.seconds}</span>
-              <span style={styles.label}>Seconds</span>
-            </div>
-          </>
-        )}
-        {!showCountdown && (
-          <div style={styles.messageContainer}>
-            <h1 style={styles.happyNewYear}>🎆 Happy New Year 2025! 🎆</h1>
-            <p style={styles.message}>
-              Wishing you a year filled with joy, success, and celebration!
-            </p>
-          </div>
-        )}
+        <div style={styles.messageContainer}>
+          <h1 style={styles.happyNewYear}>🎆 Happy New Year 2025! 🎆</h1>
+          <p style={styles.message}>
+            Wishing you a year filled with joy, success, and celebration!
+          </p>
+        </div>
         <button onClick={handleDeployClick} style={styles.deployButton}>
           Deploy PG Inc
         </button>
@@ -132,26 +90,12 @@ export default function NewYear2025() {
   );
 }
 
-function calculateTimeLeft(targetDate) {
-  const now = new Date();
-  const difference = targetDate - now;
-
-  if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
-  return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / (1000 * 60)) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
-  };
-}
-
 function Fireworks() {
-  // Fireworks logic as previously defined.
+  return null;
 }
 
 function StickmanAnimation() {
-  // Stickman animation logic as previously defined.
+  return null;
 }
 
 const styles = {
@@ -169,26 +113,6 @@ const styles = {
     position: "relative",
     top: "50%",
     transform: "translateY(-50%)",
-  },
-  title: {
-    fontSize: "2.5rem",
-    marginBottom: "20px",
-  },
-  countdown: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "10px",
-  },
-  timeBox: {
-    fontSize: "3rem",
-    fontWeight: "bold",
-    background: "rgba(255, 255, 255, 0.2)",
-    padding: "10px 20px",
-    borderRadius: "10px",
-  },
-  label: {
-    fontSize: "1rem",
-    marginTop: "20px",
   },
   messageContainer: {
     textAlign: "center",
@@ -218,6 +142,6 @@ const styles = {
     left: 0,
     width: "100%",
     height: "100%",
-    zIndex: -1,
+    zIndex: 1,
   },
 };
