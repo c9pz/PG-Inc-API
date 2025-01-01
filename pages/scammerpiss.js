@@ -39,18 +39,19 @@ function Zx9fPjs4() {
           align-items: center;
           justify-content: center;
           background-color: #333;
-          padding: 10px;
+          padding: 5px 10px;
+          font-size: 1rem;
         }
 
         .logo {
-          width: 50px;
-          height: 50px;
+          width: 30px;
+          height: 30px;
           margin-right: 10px;
         }
 
         .navbar-text {
-          font-family: 'Source Sans Pro', sans-serif;
-          font-size: 1.5rem;
+          font-family: 'Comic Sans MS', sans-serif;
+          font-size: 1.2rem;
           color: white;
         }
 
