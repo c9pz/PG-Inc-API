@@ -19,85 +19,53 @@ function RobuxPage() {
       <button onClick={handleButtonClick}>Buy Robax!!1!!</button>
 
       {showModal && (
-        <div className="simplemodal-container">
+        <div id="simplemodal-container" className="simplemodal-container">
           <div className="simplemodal-wrap">
-            <div className="modal-confirmation">
-              <div className="modal-dialog">
-                <div className="modal-header">
-                  <button type="button" className="close" onClick={closeModal}>
-                    <FontAwesomeIcon icon={faTimes} style={{ color: 'black', fontSize: '20px' }} />
-                  </button>
-                  <h5 className="modal-title">Insufficient Robux</h5>
-                </div>
-                <div className="modal-body">
-                  <div className="modal-top-body">
-                    <div className="modal-message">
-                      <div className="item-card-container item-preview">
-                        <div className="item-card-thumb">
-                          <img
-                            alt="item preview"
-                            src="https://tr.rbxcdn.com/180DAY-d8518ec386f04a4055c261f36b48531e/110/110/LayeredAccessory/Png/noFilter"
-                          />
-                        </div>
-                        <div className="item-info text-name">
-                          <div className="text-overflow item-card-name">
-                            ardor*- pocket hoodie posed (black)
+            <div id="modal-confirmation" className="modal-confirmation noImage simplemodal-data">
+              <div id="modal-dialog" className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <button type="button" className="close" onClick={closeModal}>
+                      <span aria-hidden="true"><FontAwesomeIcon icon={faTimes} /></span>
+                      <span className="sr-only">Close</span>
+                    </button>
+                    <h5 className="modal-title">Insufficient Robux</h5>
+                  </div>
+                  <div className="modal-body">
+                    <div className="modal-top-body">
+                      <div className="modal-message">
+                        <div className="item-card-container item-preview">
+                          <div className="item-card-thumb">
+                            <img alt="item preview" src="https://tr.rbxcdn.com/180DAY-2b8a1bf9da1152bc373516ab3c4dddd0/110/110/Hat/Png/noFilter" />
                           </div>
-                          <div className="text-robux item-card-price">
-                            <span className="icon-robux-16x16"></span>
-                            <span className="text-robux">60</span>
-                            <span
-                              className="text-secondary"
-                              style={{ color: "rgb(117, 117, 117)" }}
-                            >
-                              ($0.75)
-                            </span>
+                          <div className="item-info text-name">
+                            <div className="text-overflow item-card-name">HellCat Car Keys</div>
+                            <div className="text-robux item-card-price">
+                              <span className="icon-robux-16x16"></span>
+                              <span className="text-robux">60</span>
+                              <span className="text-secondary" style={{ color: "rgb(117, 117, 117)" }}>($0.75)</span>
+                            </div>
+                            <span className="text-secondary" style={{ paddingLeft: "3px", color: "rgb(117, 117, 117)" }}>($0.75)</span>
                           </div>
                         </div>
+                        <div className="modal-message-block text-center border-top">
+                          You need an additional <span className="icon-robux-gray-16x16"></span><span className="text">60</span>. Would you like to buy a <span className="icon-robux-16x16"></span><span className="text-robux">500</span> package?<span className="text-secondary" style={{ color: "rgb(117, 117, 117)" }}>($6.25)</span>
+                        </div>
+                        <div className="modal-message-block text-center border-top">
+                          Your payment method will be charged. Roblox <a className="text-link-secondary terms-of-use-link" target="_blank" href="https://www.roblox.com/info/terms?locale=en_us">Terms of Use</a> apply.
+                        </div>
                       </div>
-                      <div className="modal-message-block text-center border-top">
-                        You need an additional{" "}
-                        <span className="icon-robux-gray-16x16"></span>
-                        <span className="text">60</span>. Would you like to buy a{" "}
-                        <span className="icon-robux-16x16"></span>
-                        <span className="text-robux">500</span> package?
-                        <span
-                          className="text-secondary"
-                          style={{ color: "rgb(117, 117, 117)" }}
-                        >
-                          ($6.25)
-                        </span>
+                      <div className="modal-btns">
+                        <a href="" id="confirm-btn" className="btn-primary-md">Buy Robux and Item</a>
+                        <a href="" id="decline-btn" className="btn-control-md">Cancel</a>
                       </div>
-                      <div className="modal-message-block text-center border-top">
-                        Your payment method will be charged. Roblox{" "}
-                        <a
-                          className="text-link-secondary terms-of-use-link"
-                          target="_blank"
-                          href="https://www.roblox.com/info/terms?locale=en_us"
-                        >
-                          Terms of Use
-                        </a>{" "}
-                        apply.
+                      <div className="loading modal-processing">
+                        <img className="loading-default" src="https://images.rbxcdn.com/4bed93c91f909002b1f17f05c0ce13d1.gif" alt="Processing..." />
                       </div>
-                    </div>
-                    <div className="modal-btns">
-                      <a href="" id="confirm-btn" className="btn-primary-md">
-                        Buy Robux and Item
-                      </a>
-                      <a href="" id="decline-btn" className="btn-control-md">
-                        Cancel
-                      </a>
-                    </div>
-                    <div className="loading modal-processing">
-                      <img
-                        className="loading-default"
-                        src="https://images.rbxcdn.com/4bed93c91f909002b1f17f05c0ce13d1.gif"
-                        alt="Processing..."
-                      />
                     </div>
                   </div>
+                  <div className="modal-footer text-footer" style={{ display: "none" }}></div>
                 </div>
-                <div className="modal-footer text-footer" style={{ display: "none" }}></div>
               </div>
             </div>
           </div>
@@ -152,16 +120,6 @@ function RobuxPage() {
           padding: 20px;
         }
 
-        .modal-confirmation {
-          background: white;
-          border-radius: 10px;
-        }
-
-        .modal-dialog {
-          background: white;
-          border-radius: 10px;
-        }
-
         .modal-header {
           display: flex;
           justify-content: space-between;
@@ -205,14 +163,14 @@ function RobuxPage() {
         }
 
         .close {
-          background: transparent;
+          background: none;
           border: none;
-          padding: 0;
+          font-size: 24px;
           cursor: pointer;
         }
 
-        .close:hover {
-          background: transparent;
+        .close span {
+          color: black;
         }
       `}</style>
     </div>
