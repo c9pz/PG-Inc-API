@@ -55,22 +55,23 @@ function Zx9fPjs4() {
         }
 
         button {
-          padding: 10px 20px;
-          font-size: 1rem;
-          background-color: #007bff;
+          padding: 12px 25px;
+          font-size: 1.1rem;
+          background: linear-gradient(90deg, rgba(33, 150, 243, 1) 0%, rgba(3, 169, 244, 1) 100%);
           color: white;
           border: none;
-          border-radius: 5px;
+          border-radius: 4px;
           cursor: pointer;
-          transition: background-color 0.2s;
+          transition: background 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
-          background-color: #0056b3;
+          background: linear-gradient(90deg, rgba(3, 169, 244, 1) 0%, rgba(33, 150, 243, 1) 100%);
+          transform: scale(1.05);
         }
 
         button:disabled {
-          background-color: #cccccc;
+          background: #cccccc;
           cursor: not-allowed;
         }
 
