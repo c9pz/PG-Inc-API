@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function NewYear2025() {
   const [showCountdown, setShowCountdown] = useState(true);
   const [fireworksActive, setFireworksActive] = useState(false);
+  const [stickmanActive, setStickmanActive] = useState(false);
   const [timeLeft, setTimeLeft] = useState(
     calculateTimeLeft(new Date("2025-01-01T00:00:00"))
   );
@@ -26,6 +27,10 @@ export default function NewYear2025() {
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleDeployClick = () => {
+    setStickmanActive(true);
+  };
 
   return (
     <div style={styles.container}>
@@ -53,8 +58,12 @@ export default function NewYear2025() {
             </p>
           </div>
         )}
+        <button onClick={handleDeployClick} style={styles.deployButton}>
+          Deploy PG Inc
+        </button>
       </div>
       {fireworksActive && <Fireworks />}
+      {stickmanActive && <StickmanAnimation />}
     </div>
   );
 }
@@ -135,6 +144,54 @@ function Fireworks() {
   return <canvas id="fireworksCanvas" style={styles.canvas}></canvas>;
 }
 
+function StickmanAnimation() {
+  useEffect(() => {
+    const canvas = document.getElementById("stickmanCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let stickman = { x: 100, y: canvas.height / 2, alpha: 1 };
+    let frame = 0;
+
+    function drawStickman() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalAlpha = stickman.alpha;
+
+      ctx.beginPath();
+      ctx.arc(stickman.x, stickman.y, 20, 0, Math.PI * 2);
+      ctx.moveTo(stickman.x, stickman.y + 20);
+      ctx.lineTo(stickman.x, stickman.y + 60);
+      ctx.moveTo(stickman.x - 20, stickman.y + 40);
+      ctx.lineTo(stickman.x + 20, stickman.y + 40);
+      ctx.moveTo(stickman.x, stickman.y + 60);
+      ctx.lineTo(stickman.x - 20, stickman.y + 80);
+      ctx.moveTo(stickman.x, stickman.y + 60);
+      ctx.lineTo(stickman.x + 20, stickman.y + 80);
+      ctx.strokeStyle = "#000";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.font = "20px Comic Sans MS";
+      ctx.fillStyle = "#000";
+      ctx.fillText("😄", stickman.x - 10, stickman.y + 10);
+    }
+
+    function animateStickman() {
+      stickman.x += 5;
+      if (frame > 150) stickman.alpha -= 0.02;
+      if (stickman.alpha <= 0) cancelAnimationFrame(animateStickman);
+      drawStickman();
+      frame++;
+      requestAnimationFrame(animateStickman);
+    }
+
+    animateStickman();
+  }, []);
+
+  return <canvas id="stickmanCanvas" style={styles.canvas}></canvas>;
+}
+
 const styles = {
   container: {
     fontFamily: "'Inter', sans-serif",
@@ -181,6 +238,17 @@ const styles = {
   message: {
     fontSize: "1.5rem",
     marginTop: "10px",
+  },
+  deployButton: {
+    background: "#ff0",
+    color: "#000",
+    border: "2px solid #000",
+    fontSize: "1.2rem",
+    padding: "10px 20px",
+    cursor: "pointer",
+    fontFamily: "'Comic Sans MS', sans-serif",
+    transform: "rotate(-5deg)",
+    marginTop: "30px",
   },
   canvas: {
     position: "absolute",
