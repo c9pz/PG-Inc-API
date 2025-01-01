@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function RobuxPage() {
   const [showModal, setShowModal] = useState(false);
@@ -23,10 +25,7 @@ function RobuxPage() {
               <div className="modal-dialog">
                 <div className="modal-header">
                   <button type="button" className="close" onClick={closeModal}>
-                    <span aria-hidden="true">
-                      <span className="icon-close"></span>
-                    </span>
-                    <span className="sr-only">Close</span>
+                    <FontAwesomeIcon icon={faTimes} style={{ color: 'black', fontSize: '20px' }} />
                   </button>
                   <h5 className="modal-title">Insufficient Robux</h5>
                 </div>
