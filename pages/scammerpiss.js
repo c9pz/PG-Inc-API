@@ -2,42 +2,13 @@ import React, { useState } from "react"
 
 function Zx9fPjs4() {
   const [kL_ConvertedX, setkL_ConvertedX] = useState(false)
-  const [isWalking, setIsWalking] = useState(false)
-  const [showWalkButton, setShowWalkButton] = useState(false)
-  const [blockPosition, setBlockPosition] = useState(0)
 
   const W7y49z = () => {
     setkL_ConvertedX(true)
-    setShowWalkButton(true)
     setTimeout(() => {
       alert("scammer converted to piss, lmao!")
     }, 2000)
   }
-
-  const walkOnPiss = () => {
-    setIsWalking(true)
-    setShowWalkButton(false)
-  }
-
-  const stopWalking = () => {
-    setIsWalking(false)
-    setShowWalkButton(true)
-    setBlockPosition(0)
-  }
-
-  const blockAnimation = {
-    position: "absolute",
-    bottom: "50px",
-    left: `${blockPosition}%`,
-    width: "30px",
-    height: "30px",
-    backgroundColor: "#00f",
-    borderRadius: "50%",
-    transition: "left 1s, transform 0.5s",
-    animation: isWalking ? "walkAnimation 5s infinite, jumpAnimation 1s infinite" : "none"
-  }
-
-  const pissAnimation = kL_ConvertedX ? "splash 1.5s ease-in-out infinite" : "none";
 
   return (
     <div className="container">
@@ -45,21 +16,11 @@ function Zx9fPjs4() {
       <p>lmao piss</p>
       <div className={`scammer ${kL_ConvertedX ? "converted" : ""}`}>
         {!kL_ConvertedX && <span className={`warning-emoji ${kL_ConvertedX ? "melt" : ""}`}>⚠️</span>}
-        {kL_ConvertedX && <div className="piss" style={{ animation: pissAnimation }}></div>}
+        {kL_ConvertedX && <div className="piss"></div>}
       </div>
       <button onClick={W7y49z} disabled={kL_ConvertedX}>
         {kL_ConvertedX ? "converted!" : "convert that scammer"}
       </button>
-
-      {showWalkButton && kL_ConvertedX && !isWalking && (
-        <button onClick={walkOnPiss}>walk on piss!!1!!</button>
-      )}
-
-      {isWalking && (
-        <button onClick={stopWalking}>stop walking!1!!</button>
-      )}
-
-      <div className="block" style={blockAnimation}></div>
 
       <style jsx>{`
         .container {
@@ -149,27 +110,6 @@ function Zx9fPjs4() {
           }
           50% {
             transform: scale(1.1);
-          }
-        }
-
-        @keyframes walkAnimation {
-          0% {
-            left: 0%;
-          }
-          50% {
-            left: 50%;
-          }
-          100% {
-            left: 100%;
-          }
-        }
-
-        @keyframes jumpAnimation {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-30px);
           }
         }
       `}</style>
