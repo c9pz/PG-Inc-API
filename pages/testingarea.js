@@ -2,36 +2,47 @@ import React from 'react';
 
 const SignUpPage = () => {
   return (
-    <div style={styles.container}>
-      <a 
-        style={styles.button} 
-        href="/web/20200617022142/https://github.com/join?source=prompt-releases"
+    <div>
+      <a
+        className="btn btn-primary"
+        data-ga-click="(Logged out) Sign up prompt, clicked Sign up, text:sign-up"
+        data-hydro-click='{"event_type":"authentication.click","payload":{"location_in_page":"releases signup prompt","auth_type":"SIGN_UP","originating_url":"https://github.com/rauenzi/BetterDiscordApp/releases"}}'
+        href="https://github.com/join?source=prompt-releases"
       >
         Sign up
       </a>
+
+      <style jsx>{`
+        .btn {
+          -webkit-text-size-adjust: 100%;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+          word-wrap: break-word;
+          text-align: center!important;
+          box-sizing: border-box;
+          text-decoration: none;
+          position: relative;
+          display: inline-block;
+          padding: 6px 12px;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 20px;
+          white-space: nowrap;
+          vertical-align: middle;
+          cursor: pointer;
+          user-select: none;
+          background-repeat: repeat-x;
+          background-position: -1px -1px;
+          background-size: 110% 110%;
+          border: 1px solid rgba(27,31,35,.2);
+          border-radius: .25em;
+          appearance: none;
+          color: #fff;
+          background-color: #28a745;
+          background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
+        }
+      `}</style>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    textAlign: 'center',
-    marginTop: '100px',
-  },
-  button: {
-    padding: '10px 25px',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    backgroundColor: '#5e5e5e',
-    color: '#ffffff',
-    border: '2px solid #3d3d3d',
-    borderRadius: '3px',
-    textDecoration: 'none',
-    display: 'inline-block',
-    cursor: 'pointer',
-    boxShadow: 'inset 0 1px 0 #d1d1d1',
-    transition: 'all 0.3s ease-in-out',
-  },
 };
 
 export default SignUpPage;
