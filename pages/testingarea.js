@@ -7,7 +7,7 @@ const TestButton = () => {
         className="btn btn-primary" 
         href="https://pg-inc-api.vercel.app/testingarea" 
         style={{
-          -webkitTextSizeAdjust: '100%',
+          WebkitTextSizeAdjust: '100%',
           fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji',
           wordWrap: 'break-word',
           textDecoration: 'none',
@@ -22,8 +22,8 @@ const TestButton = () => {
           borderRadius: '.25em',
           cursor: 'pointer',
           color: '#fff',
-          textAlign: 'center',
-          whiteSpace: 'nowrap'
+          whiteSpace: 'nowrap',
+          textAlign: 'center'
         }}
       >
         Test
