@@ -5,9 +5,6 @@ const SignUpPage = () => {
     <div style={styles.container}>
       <a 
         style={styles.button} 
-        data-ga-click="(Logged out) Sign up prompt, clicked Sign up, text:sign-up" 
-        data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;releases signup prompt&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/rauenzi/BetterDiscordApp/releases&quot;,&quot;user_id&quot;:null}}" 
-        data-hydro-click-hmac="4b6ed97c58fd41761fde33097d94f0918a196b1b3c530089ffc555280af1b61f" 
         href="/web/20200617022142/https://github.com/join?source=prompt-releases"
       >
         Sign up
@@ -22,15 +19,19 @@ const styles = {
     marginTop: '100px',
   },
   button: {
-    display: 'inline-block',
-    padding: '10px 20px',
-    fontSize: '16px',
-    backgroundColor: '#007bff',
-    color: 'white',
+    padding: '10px 25px',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    backgroundColor: '#5e5e5e',
+    color: '#ffffff',
+    border: '2px solid #3d3d3d',
+    borderRadius: '3px',
     textDecoration: 'none',
-    borderRadius: '5px',
-    transition: 'background-color 0.3s',
-  }
+    display: 'inline-block',
+    cursor: 'pointer',
+    boxShadow: 'inset 0 1px 0 #d1d1d1',
+    transition: 'all 0.3s ease-in-out',
+  },
 };
 
 export default SignUpPage;
