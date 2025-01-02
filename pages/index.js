@@ -76,11 +76,13 @@ const HomePage = () => {
               text-decoration: none;
               font-size: 0.9rem;
               font-weight: 500;
-              transition: background-color 0.2s ease;
+              transition: background-color 0.2s ease, transform 0.3s ease;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
 
             .api-link:hover {
               background-color: #0056b3;
+              transform: scale(1.05);
             }
 
             footer {
@@ -156,7 +158,7 @@ const HomePage = () => {
           </ul>
         </section>
         <footer>
-          <p>pg inc api &copy; 2024</p>
+          <p>pg inc api &copy; 2025</p>
         </footer>
       </body>
     </>
